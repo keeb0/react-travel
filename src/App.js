@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import './App.css'
+import Context from './Context'
+import Header from './components/Header/Header'
+import Navbar from './components/Navbar/Navbar'
+import Home from './components/Home/Home'
+import Login from './components/Login/Login'
+import Profile from './components/Profile/Profile'
+import Advertisement from './components/Advertisement/Advertisement'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [userSigned, setUserSigned] = useState(false)
+
+	return (
+		<Context.Provider value={{ userSigned }}>
+			<BrowserRouter>
+				<div>
+					<Header userSigned={userSigned} />
+					<div className="main-wrapper">
+						<Navbar />
+						<div className="main-wrapper-content">
+							<Switch>
+								<Route path="/advertisment" component={Advertisement} />
+								<Route path="/profile" component={Profile} />
+								<Route path="/login" component={Login} />
+								<Route path="/" component={Home} />
+							</Switch>
+						</div>
+					</div>
+				</div>
+			</BrowserRouter>
+		</Context.Provider>
+	)
 }
 
-export default App;
+export default App
