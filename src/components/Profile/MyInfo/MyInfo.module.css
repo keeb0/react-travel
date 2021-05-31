@@ -1,0 +1,12 @@
+.my_info {
+	display: grid;
+	grid-template-columns: 2fr 8fr;
+}
+
+.my_avatar img {
+	height: 8rem;
+}
+
+.my_name {
+	font-size: 22px;
+}

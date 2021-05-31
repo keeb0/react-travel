@@ -1,0 +1,11 @@
+.my_posts * {
+	margin-top: 0.5rem;
+}
+
+.send_btn {
+	height: 3rem;
+}
+
+.send_btn button {
+	float: right;
+}

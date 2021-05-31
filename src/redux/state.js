@@ -1,3 +1,6 @@
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
+const ADD_NEW_POST = 'ADD_NEW_POST'
+
 const store = {
 	_state: {
 		dialogsPage: {
@@ -14,6 +17,14 @@ const store = {
 				{ id: 5, text: 'and you?' },
 			],
 			newMessageText: '',
+		},
+		profilePage: {
+			postList: [
+				{ id: 1, text: 'Why nobody loves me?' },
+				{ id: 2, text: 'Im learning React' },
+				{ id: 3, text: "I love it. It's cool" },
+			],
+			newPostText: '',
 		},
 		userSigned: false,
 	},
@@ -65,6 +76,27 @@ const store = {
 				this._callSubscriber()
 				break
 
+			case UPDATE_NEW_POST_TEXT:
+				this._state.profilePage.newPostText = action.newText
+				this._callSubscriber()
+				break
+
+			case ADD_NEW_POST:
+				const newPostText = this._state.profilePage.newPostText
+
+				if (!newPostText.trim()) {
+					throw new Error('new post text must be not empty')
+				}
+
+				const newPost = {
+					id: Date.now(),
+					text: newPostText,
+				}
+				this._state.profilePage.postList.push(newPost)
+				this._state.profilePage.newPostText = ''
+				this._callSubscriber()
+				break
+
 			default:
 				throw new Error('action type is undefined')
 		}
@@ -74,5 +106,14 @@ const store = {
 		return this._state
 	},
 }
+
+export const updateNewPostTextActionCreator = text => ({
+	type: UPDATE_NEW_POST_TEXT,
+	newText: text,
+})
+
+export const addNewPostActionCreator = () => ({
+	type: ADD_NEW_POST,
+})
 
 export default store
