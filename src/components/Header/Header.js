@@ -1,6 +1,6 @@
 import s from './Header.module.css'
 import PropTypes from 'prop-types'
-import Logo from './Logo'
+import Logo from './Logo/Logo'
 import Navigation from './Navigation/Navigation'
 import NavigationItem from './Navigation/NavigationItem/NavigationItem'
 

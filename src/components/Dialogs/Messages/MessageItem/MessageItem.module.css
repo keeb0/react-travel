@@ -1,0 +1,18 @@
+.message_item {
+	padding: 0.3rem;
+	/* background-color:  */
+	border: 1px solid #ccc;
+	/* width: 100%; */
+	/* float: left; */
+}
+
+.message_item.mine {
+	text-align: right;
+	/* float: right; */
+}
+
+.text {
+	/* width: 30%; */
+	/* background-color: rgb(141, 141, 141); */
+	/* float: right; */
+}

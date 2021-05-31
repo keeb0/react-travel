@@ -1,0 +1,11 @@
+.dialog {
+	padding: 0.5rem;
+}
+.dialog a {
+	text-decoration: none;
+	color: rgb(59, 30, 30);
+}
+.dialog .active {
+	background-color: rgb(199, 152, 152);
+	padding: 0.5rem;
+}

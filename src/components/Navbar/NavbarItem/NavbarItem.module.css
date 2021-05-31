@@ -1,0 +1,13 @@
+.item {
+	text-align: center;
+	margin-top: 2em;
+}
+.item a {
+	color: rgb(57, 63, 119);
+	text-decoration: none;
+	padding: 10px;
+}
+.item a.active {
+	color: #fff;
+	background-color: rgb(58, 32, 32);
+}

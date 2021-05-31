@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
 import s from './Navbar.module.css'
-import NavbarItem from './NavbarItem'
+import NavbarItem from './NavbarItem/NavbarItem'
 
 const Navbar = () => {
 	const navbarObjs = [
 		{ title: 'Messages', link: '/messages' },
-		{ title: 'Settings', link: '/setting' },
+		{ title: 'Profile', link: '/profile' },
+		// { title: 'Settings', link: '/setting' },
 	]
 
 	return (
