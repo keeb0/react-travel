@@ -1,36 +1,22 @@
-import React from 'react'
 import MessageItem from './MessageItem/MessageItem'
 import s from './Messages.module.css'
 import PropTypes from 'prop-types'
-import {
-	sendMessageCreator,
-	updateNewMessageTextCreator,
-} from '../../../redux/dialogs-reducer'
 
-const Messages = ({ mList, dispatch, newMessageText }) => {
-	const mItems = mList.map(message => (
-		<MessageItem key={message.id} messageItem={message} />
+const Messages = ({
+	messageList,
+	newMessageText,
+	onInputMsgText,
+	onSendMsg,
+}) => {
+	const mItems = messageList.map(message => (
+		<MessageItem key={message.id} message={message} />
 	))
-
-	const onChangeMsgText = e => {
-		const action = updateNewMessageTextCreator(e.target.value)
-		dispatch(action)
-	}
-
-	const onSendMsg = e => {
-		e.preventDefault()
-		const action = sendMessageCreator()
-
-		if (newMessageText.trim()) {
-			dispatch(action)
-		}
-	}
 
 	return (
 		<div className={s.messages}>
 			{mItems}
 			<form>
-				<input type="text" value={newMessageText} onChange={onChangeMsgText} />
+				<input value={newMessageText} onInput={onInputMsgText} />
 				<button onClick={onSendMsg}>Send</button>
 			</form>
 		</div>
@@ -38,7 +24,10 @@ const Messages = ({ mList, dispatch, newMessageText }) => {
 }
 
 Messages.propTypes = {
-	// state: PropTypes.object.isRequired,
+	messageList: PropTypes.arrayOf(PropTypes.object).isRequired,
+	newMessageText: PropTypes.string.isRequired,
+	onInputMsgText: PropTypes.func.isRequired,
+	onSendMsg: PropTypes.func.isRequired,
 }
 
 export default Messages
