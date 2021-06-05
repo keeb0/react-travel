@@ -3,7 +3,7 @@ import s from './Posts.module.css'
 import {
 	updateNewPostTextActionCreator,
 	addNewPostActionCreator,
-} from '../../../redux/state'
+} from '../../../redux/profile-reducer'
 
 const Posts = ({ postList, dispatch, newPostText }) => {
 	const onInputNewText = e => {

@@ -2,6 +2,10 @@ import React from 'react'
 import MessageItem from './MessageItem/MessageItem'
 import s from './Messages.module.css'
 import PropTypes from 'prop-types'
+import {
+	sendMessageCreator,
+	updateNewMessageTextCreator,
+} from '../../../redux/dialogs-reducer'
 
 const Messages = ({ mList, dispatch, newMessageText }) => {
 	const mItems = mList.map(message => (
@@ -9,20 +13,16 @@ const Messages = ({ mList, dispatch, newMessageText }) => {
 	))
 
 	const onChangeMsgText = e => {
-		dispatch({
-			type: 'UPDATE-NEW-MESSAGE-TEXT',
-			text: e.target.value,
-		})
+		const action = updateNewMessageTextCreator(e.target.value)
+		dispatch(action)
 	}
 
 	const onSendMsg = e => {
 		e.preventDefault()
+		const action = sendMessageCreator()
 
 		if (newMessageText.trim()) {
-			dispatch({
-				type: 'SEND-MESSAGE',
-				text: newMessageText,
-			})
+			dispatch(action)
 		}
 	}
 

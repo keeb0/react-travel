@@ -11,10 +11,10 @@ import Dialogs from './components/Dialogs/Dialogs'
 
 function App({ state, dispatch }) {
 	return (
-		<Context.Provider value={{ userSigned: state.userSigned }}>
+		<Context.Provider value={{ userSigned: true }}>
 			<BrowserRouter>
 				<div>
-					<Header userSigned={state.userSigned} />
+					<Header userSigned={true} />
 					<div className="main-wrapper">
 						<Navbar />
 						<div className="main-wrapper-content">
