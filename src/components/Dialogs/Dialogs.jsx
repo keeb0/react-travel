@@ -1,19 +1,14 @@
-import DialogList from './DialogList/DialogList'
 import s from './Dialogs.module.css'
-import Messages from './Messages/Messages'
-import PropTypes from 'prop-types'
+import DialogsListContainer from './DialogList/DialogsListContainer'
+import MessagesContainer from './Messages/MessagesContainer'
 
-const Dialogs = ({ state, dispatch }) => {
+const Dialogs = () => {
 	return (
 		<div className={s.dialogs}>
-			<DialogList dList={state.dialogList} />
-			<Messages mList={state.messageList} newMessageText={state.newMessageText} dispatch={dispatch} />
+			<DialogsListContainer />
+			<MessagesContainer />
 		</div>
 	)
-}
-
-Dialogs.propTypes = {
-	state: PropTypes.object.isRequired,
 }
 
 export default Dialogs

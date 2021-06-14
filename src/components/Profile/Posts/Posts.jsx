@@ -1,25 +1,8 @@
+import PropTypes from 'prop-types'
 import PostList from './PostList/PostList'
 import s from './Posts.module.css'
-import {
-	updateNewPostTextActionCreator,
-	addNewPostActionCreator,
-} from '../../../redux/profile-reducer'
 
-const Posts = ({ postList, dispatch, newPostText }) => {
-	const onInputNewText = e => {
-		const action = updateNewPostTextActionCreator(e.target.value)
-		dispatch(action)
-	}
-
-	const onSendPost = e => {
-		e.preventDefault()
-		if (!newPostText.length) {
-			return
-		}
-		const action = addNewPostActionCreator()
-		dispatch(action)
-	}
-
+const Posts = ({ postList, newPostText, onInputNewPost, onSendPost }) => {
 	return (
 		<div className={s.posts}>
 			<div className={s.my_posts}>
@@ -29,7 +12,7 @@ const Posts = ({ postList, dispatch, newPostText }) => {
 						cols="102"
 						rows="6"
 						value={newPostText}
-						onInput={onInputNewText}
+						onInput={onInputNewPost}
 					></textarea>
 					<div className={s.send_btn}>
 						<button onClick={onSendPost}>Send</button>
@@ -37,9 +20,16 @@ const Posts = ({ postList, dispatch, newPostText }) => {
 				</form>
 			</div>
 
-			<PostList postList={postList} dispatch={dispatch} />
+			<PostList postList={postList} />
 		</div>
 	)
+}
+
+Posts.propTypes = {
+	postList: PropTypes.arrayOf(PropTypes.object).isRequired,
+	newPostText: PropTypes.string.isRequired,
+	onInputNewPost: PropTypes.func.isRequired,
+	onSendPost: PropTypes.func.isRequired,
 }
 
 export default Posts

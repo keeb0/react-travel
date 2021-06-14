@@ -1,7 +1,7 @@
 const initialState = {}
 
-const sidebarReducer = (state = initialState, { type, text }) => {
-	switch (type) {
+const sidebarReducer = (state = initialState, action) => {
+	switch (action.type) {
 		default:
 			return state
 	}

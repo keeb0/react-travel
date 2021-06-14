@@ -1,0 +1,2 @@
+export const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING'
+export const GET_USERS = 'GET_USERS'

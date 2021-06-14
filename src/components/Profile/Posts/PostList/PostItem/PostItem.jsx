@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import s from './PostItem.module.css'
 
 const PostItem = ({ post }) => {
@@ -7,6 +8,10 @@ const PostItem = ({ post }) => {
 			<span>{post.text}</span>
 		</div>
 	)
+}
+
+PostItem.propTypes = {
+	post: PropTypes.object.isRequired,
 }
 
 export default PostItem
