@@ -6,7 +6,7 @@ const Navbar = () => {
 	const navbarObjs = [
 		{ title: 'Messages', link: '/messages' },
 		{ title: 'Profile', link: '/profile' },
-		// { title: 'Settings', link: '/setting' },
+		{ title: 'Users', link: '/users' },
 	]
 
 	return (

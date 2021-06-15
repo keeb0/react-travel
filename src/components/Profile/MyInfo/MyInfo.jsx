@@ -2,7 +2,7 @@ import s from './MyInfo.module.css'
 
 const MyInfo = () => {
 	return (
-		<div className={s.my_info}>
+		<div className={s.my_info + ' container'}>
 			<div className={s.my_avatar}>
 				<img src="https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png" />
 			</div>

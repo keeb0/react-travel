@@ -2,6 +2,7 @@ import { TOGGLE_FOLLOWING, GET_USERS } from './types'
 
 const initialState = {
 	items: [],
+	totalCount: 0,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -10,6 +11,7 @@ const usersReducer = (state = initialState, action) => {
 			return {
 				...state,
 				items: action.newItems,
+				totalCount: action.totalCount,
 			}
 
 		case TOGGLE_FOLLOWING:

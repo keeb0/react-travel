@@ -1,6 +1,5 @@
 import { Route, Switch } from 'react-router-dom'
 import './App.css'
-import Context from './Context'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Home from './components/Home/Home'

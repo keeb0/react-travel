@@ -4,7 +4,7 @@ import MessagesContainer from './Messages/MessagesContainer'
 
 const Dialogs = () => {
 	return (
-		<div className={s.dialogs}>
+		<div className={s.dialogs + ' content'}>
 			<DialogsListContainer />
 			<MessagesContainer />
 		</div>

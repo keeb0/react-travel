@@ -5,7 +5,7 @@ body {
 .main-wrapper {
 	display: grid;
 	grid-template-areas: 'n mc';
-	grid-template-columns: 2fr 10fr;
+	grid-template-columns: 2fr 900px;
 	grid-template-rows: 1fr;
 	grid-gap: 2vw;
 	width: 1000px;
@@ -20,4 +20,8 @@ body {
 .container {
 	width: 1000px;
 	margin: 0 auto;
+}
+
+.content { 
+	padding: 1rem;
 }
