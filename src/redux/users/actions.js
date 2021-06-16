@@ -24,7 +24,6 @@ export const getUsers = () => {
 					newItems: response.data.items,
 					totalCount: response.data.totalCount,
 				})
-				dispatch(endLoading())
 			})
 	}
 }
@@ -43,8 +42,4 @@ export const updatePage = newPage => ({
 
 export const startLoading = () => ({
 	type: START_LOADING,
-})
-
-export const endLoading = () => ({
-	type: END_LOADING,
 })

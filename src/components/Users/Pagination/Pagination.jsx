@@ -5,13 +5,18 @@ class Pagination extends Component {
 	getPageCount = () => {
 		return Math.ceil(this.props.totalItems / this.props.pageSize)
 	}
+	onClickPage = page => {
+		this.props.startLoading()
+		this.props.onClickPage(page)
+		this.props.setUsers()
+	}
 
 	createPageItem = (page, icon) => {
 		return (
 			<button
 				className={s.item}
 				key={page}
-				onClick={this.props.onClickPage.bind(this, page)}
+				onClick={this.onClickPage.bind(this, page)}
 				className={this.props.currentPage === page ? s.active : ''}
 			>
 				{icon || page}

@@ -9,9 +9,9 @@ import {
 const initialState = {
 	items: [],
 	totalCount: 0,
-	pageSize: 3,
+	pageSize: 5,
 	currentPage: 1,
-	loading: false,
+	isLoading: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -21,6 +21,7 @@ const usersReducer = (state = initialState, action) => {
 				...state,
 				items: action.newItems,
 				totalCount: action.totalCount,
+				isLoading: false,
 			}
 
 		case TOGGLE_FOLLOWING:
@@ -43,13 +44,13 @@ const usersReducer = (state = initialState, action) => {
 		case START_LOADING:
 			return {
 				...state,
-				loading: true,
+				isLoading: true,
 			}
 
 		case END_LOADING:
 			return {
 				...state,
-				loading: false,
+				isLoading: false,
 			}
 
 		default:

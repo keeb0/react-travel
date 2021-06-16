@@ -1,6 +1,6 @@
-import s from './UserList.module.css'
+import s from './Users.module.css'
 
-const UserList = ({ users, userPhoto, onToggleFollowing }) => {
+const Users = ({ users, userPhoto, onToggleFollowing }) => {
 	return (
 		<div className="content">
 			{users.map(u => (
@@ -31,4 +31,4 @@ const UserList = ({ users, userPhoto, onToggleFollowing }) => {
 	)
 }
 
-export default UserList
+export default Users
