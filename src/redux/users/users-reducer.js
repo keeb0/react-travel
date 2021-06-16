@@ -1,8 +1,17 @@
-import { TOGGLE_FOLLOWING, GET_USERS } from './types'
+import {
+	TOGGLE_FOLLOWING,
+	GET_USERS,
+	UPDATE_PAGE,
+	START_LOADING,
+	END_LOADING,
+} from './types'
 
 const initialState = {
 	items: [],
 	totalCount: 0,
+	pageSize: 3,
+	currentPage: 1,
+	loading: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -23,6 +32,24 @@ const usersReducer = (state = initialState, action) => {
 					}
 					return user
 				}),
+			}
+
+		case UPDATE_PAGE:
+			return {
+				...state,
+				currentPage: action.newPage,
+			}
+
+		case START_LOADING:
+			return {
+				...state,
+				loading: true,
+			}
+
+		case END_LOADING:
+			return {
+				...state,
+				loading: false,
 			}
 
 		default:
