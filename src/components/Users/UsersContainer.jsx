@@ -8,13 +8,16 @@ import {
 import userPhoto from '../../assets/users/img/person-icon.png'
 import { Component } from 'react'
 import Pagination from './Pagination/Pagination'
-import Loading from '../Loading/Loading'
+import Loading from '../common/Loading/Loading'
 import UsersList from './UserList/UsersList'
 
 class UsersContainer extends Component {
 	componentDidMount() {
 		this.props.startLoading()
-		this.props.getUsers()
+		this.props.getUsers({
+			page: this.props.currentPage,
+			count: this.props.pageSize,
+		})
 	}
 
 	render() {
@@ -24,9 +27,9 @@ class UsersContainer extends Component {
 					totalItems={this.props.totalCount}
 					pageSize={this.props.pageSize}
 					currentPage={this.props.currentPage}
-					onClickPage={this.props.updatePage}
+					updatePage={this.props.updatePage}
 					startLoading={this.props.startLoading}
-					setUsers={this.props.getUsers}
+					getUsers={this.props.getUsers}
 				/>
 
 				<UsersList
@@ -42,31 +45,12 @@ class UsersContainer extends Component {
 
 const mapStateToProps = state => ({
 	users: state.users.items,
-	userPhoto,
 	totalCount: state.users.totalCount,
 	pageSize: state.users.pageSize,
 	currentPage: state.users.currentPage,
 	loading: state.users.isLoading,
+	userPhoto,
 })
-
-const mapDispatchToProps = dispatch => {
-	return {
-		startLoading() {
-			dispatch(startLoading())
-		},
-		getUsers() {
-			dispatch(getUsers())
-		},
-		toggleFollowing(userId) {
-			dispatch(toggleFollowing(userId))
-		},
-		updatePage(newPage) {
-			// dispatch(startLoading())
-			dispatch(updatePage(newPage))
-			// dispatch(getUsers())
-		},
-	}
-}
 
 const dispatchObj = { startLoading, getUsers, toggleFollowing, updatePage }
 

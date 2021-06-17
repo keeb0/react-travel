@@ -21,7 +21,6 @@ const usersReducer = (state = initialState, action) => {
 				...state,
 				items: action.newItems,
 				totalCount: action.totalCount,
-				isLoading: false,
 			}
 
 		case TOGGLE_FOLLOWING:

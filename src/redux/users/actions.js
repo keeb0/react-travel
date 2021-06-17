@@ -1,5 +1,4 @@
 import axios from 'axios'
-import store from '../redux-store'
 import {
 	TOGGLE_FOLLOWING,
 	GET_USERS,
@@ -8,14 +7,8 @@ import {
 	END_LOADING,
 } from './types'
 
-export const getUsers = () => {
+export const getUsers = params => {
 	return dispatch => {
-		const state = store.getState().users
-		const params = {
-			count: state.pageSize,
-			page: state.currentPage,
-		}
-
 		axios
 			.get('https://social-network.samuraijs.com/api/1.0/users', { params })
 			.then(response => {
@@ -24,6 +17,7 @@ export const getUsers = () => {
 					newItems: response.data.items,
 					totalCount: response.data.totalCount,
 				})
+				dispatch(endLoading())
 			})
 	}
 }
@@ -42,4 +36,8 @@ export const updatePage = newPage => ({
 
 export const startLoading = () => ({
 	type: START_LOADING,
+})
+
+export const endLoading = () => ({
+	type: END_LOADING,
 })

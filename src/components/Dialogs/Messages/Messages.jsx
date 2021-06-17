@@ -5,12 +5,22 @@ import PropTypes from 'prop-types'
 const Messages = ({
 	messageList,
 	newMessageText,
-	onInputMsgText,
-	onSendMsg,
+	updateNewMessage,
+	sendMessage,
 }) => {
 	const mItems = messageList.map(message => (
 		<MessageItem key={message.id} message={message} />
 	))
+
+	const onSendMsg = e => {
+		e.preventDefault()
+
+		if (newMessageText.trim()) {
+			sendMessage()
+		}
+	}
+
+	const onInputMsgText = e => updateNewMessage(e.target.value)
 
 	return (
 		<div className={s.messages}>
@@ -26,8 +36,8 @@ const Messages = ({
 Messages.propTypes = {
 	messageList: PropTypes.arrayOf(PropTypes.object).isRequired,
 	newMessageText: PropTypes.string.isRequired,
-	onInputMsgText: PropTypes.func.isRequired,
-	onSendMsg: PropTypes.func.isRequired,
+	updateNewMessage: PropTypes.func.isRequired,
+	sendMessage: PropTypes.func.isRequired,
 }
 
 export default Messages

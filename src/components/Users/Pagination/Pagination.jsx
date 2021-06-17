@@ -2,13 +2,16 @@ import { Component } from 'react'
 import s from './Pagination.module.css'
 
 class Pagination extends Component {
-	getPageCount = () => {
+	getTotalPage = () => {
 		return Math.ceil(this.props.totalItems / this.props.pageSize)
 	}
 	onClickPage = page => {
 		this.props.startLoading()
-		this.props.onClickPage(page)
-		this.props.setUsers()
+		this.props.updatePage(page)
+		this.props.getUsers({
+			page,
+			count: this.props.pageSize,
+		})
 	}
 
 	createPageItem = (page, icon) => {
@@ -24,24 +27,35 @@ class Pagination extends Component {
 		)
 	}
 
-	render() {
-		const pageCount = this.getPageCount()
-		const currentPage = this.props.currentPage
-		const pageItems = []
+	setSidePages = (pageItems, currentPage, totalPage) => {
+		if (currentPage > 3) {
+			pageItems.unshift(this.createPageItem(1, '<<'))
+		}
+		if (currentPage < totalPage - 2) {
+			pageItems.push(this.createPageItem(totalPage, '>>'))
+		}
+	}
 
+	setPrevPages = (pageItems, currentPage) => {
 		for (let i = currentPage - 1; i >= currentPage - 2 && i >= 1; i--) {
 			pageItems.unshift(this.createPageItem(i))
 		}
-		for (let i = currentPage; i <= currentPage + 2 && i <= pageCount; i++) {
+	}
+
+	setNextPages = (pageItems, currentPage, totalPage) => {
+		for (let i = currentPage; i <= currentPage + 2 && i <= totalPage; i++) {
 			pageItems.push(this.createPageItem(i))
 		}
+	}
 
-		if (currentPage > 3) {
-			pageItems.unshift(this.createPageItem(1, '<'))
-		}
-		if (currentPage < pageCount - 2) {
-			pageItems.push(this.createPageItem(pageCount, '>'))
-		}
+	render() {
+		const totalPage = this.getTotalPage()
+		const currentPage = this.props.currentPage
+		const pageItems = []
+
+		this.setPrevPages(pageItems, currentPage)
+		this.setNextPages(pageItems, currentPage, totalPage)
+		this.setSidePages(pageItems, currentPage, totalPage)
 
 		return <div className={s.pagination}>{pageItems}</div>
 	}
