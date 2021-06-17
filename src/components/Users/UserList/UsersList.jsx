@@ -1,4 +1,5 @@
 import s from './UserList.module.css'
+import { Link } from 'react-router-dom'
 
 const UserList = ({ users, userPhoto, onToggleFollowing }) => {
 	return (
@@ -7,7 +8,12 @@ const UserList = ({ users, userPhoto, onToggleFollowing }) => {
 				<div key={u.id}>
 					<span>
 						<div>
-							<img src={u.photos.small || userPhoto} className={s.userPhoto} />
+							<Link to={`/profile/${u.id}`}>
+								<img
+									src={u.photos.small || userPhoto}
+									className={s.userPhoto}
+								/>
+							</Link>
 						</div>
 						<div>
 							<button onClick={_ => onToggleFollowing(u.id)}>

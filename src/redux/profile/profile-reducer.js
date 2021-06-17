@@ -1,6 +1,7 @@
-import { ADD_NEW_POST, UPDATE_NEW_POST_TEXT } from './types'
+import { ADD_NEW_POST, SET_USER_DATA, UPDATE_NEW_POST_TEXT } from './types'
 
 const initialState = {
+	user: {},
 	postList: [
 		{ id: 1, text: 'Why nobody loves me?' },
 		{ id: 2, text: 'Im learning React' },
@@ -27,6 +28,13 @@ const profileReducer = (state = initialState, action) => {
 			stateCopy.postList.push(newPost)
 			stateCopy.newPostText = ''
 			return stateCopy
+
+		case SET_USER_DATA:
+			return {
+				...state,
+				user: action.data,
+			}
+
 		default:
 			return state
 	}
