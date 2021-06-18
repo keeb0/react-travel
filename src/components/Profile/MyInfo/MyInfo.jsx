@@ -1,7 +1,13 @@
 import s from './MyInfo.module.css'
 import jobSeeker from '../../../assets/profile/img/job-seeker.png'
 
-const MyInfo = ({ fullName, aboutMe, userPhoto, lookingForAJob }) => {
+const MyInfo = ({
+	fullName,
+	aboutMe,
+	userPhoto,
+	lookingForAJob,
+	lookingForAJobDescription,
+}) => {
 	return (
 		<div className={s.my_info + ' container'}>
 			<div className={s.my_avatar}>
@@ -11,7 +17,11 @@ const MyInfo = ({ fullName, aboutMe, userPhoto, lookingForAJob }) => {
 				<div className={s.my_name}>{fullName}</div>
 				<div className={s.info}>
 					<div>{aboutMe}</div>
-					<div>{lookingForAJob && <img src={jobSeeker} />}</div>
+					<div>
+						{lookingForAJob && (
+							<img title={lookingForAJobDescription} src={jobSeeker} />
+						)}
+					</div>
 				</div>
 			</div>
 		</div>

@@ -14,6 +14,7 @@ const Profile = ({ user }) => {
 				aboutMe={user.aboutMe}
 				userPhoto={user.photos && user.photos.large}
 				lookingForAJob={user.lookingForAJob}
+				lookingForAJobDescription={user.lookingForAJobDescription}
 			/>
 			<PostsContainer />
 		</div>
