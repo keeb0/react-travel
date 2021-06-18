@@ -1,9 +1,9 @@
 import MyInfo from './MyInfo/MyInfo'
 import PostsContainer from './Posts/PostsContainer'
 import s from './Profile.module.css'
+import defaultAvatar from '../../assets/users/img/person-icon.png'
 
 const Profile = ({ user }) => {
-	console.log(user)
 	return (
 		<div className={'content'}>
 			<div className={s.background_img}>
@@ -15,6 +15,7 @@ const Profile = ({ user }) => {
 				userPhoto={user.photos && user.photos.large}
 				lookingForAJob={user.lookingForAJob}
 				lookingForAJobDescription={user.lookingForAJobDescription}
+				defaultAvatar={defaultAvatar}
 			/>
 			<PostsContainer />
 		</div>

@@ -7,11 +7,12 @@ const MyInfo = ({
 	userPhoto,
 	lookingForAJob,
 	lookingForAJobDescription,
+	defaultAvatar,
 }) => {
 	return (
 		<div className={s.my_info + ' container'}>
 			<div className={s.my_avatar}>
-				<img src={userPhoto} />
+				<img src={userPhoto || defaultAvatar} />
 			</div>
 			<div>
 				<div className={s.my_name}>{fullName}</div>

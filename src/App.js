@@ -19,7 +19,7 @@ function App() {
 					<Switch>
 						<Route path="/advertisment" component={Advertisement} />
 						<Route path="/messages" component={Dialogs} />
-						<Route path="/profile" component={ProfileComponent} />
+						<Route path="/profile/:userId?" component={ProfileComponent} />
 						<Route path="/login" component={Login} />
 						<Route exact path="/users" component={UsersContainer} />
 						<Route exact path="/" component={Home} />
