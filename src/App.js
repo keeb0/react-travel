@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom'
 import './App.css'
-import Header from './components/Header/Header'
+import HeaderComponent from './components/Header/HeaderComponent'
 import Navbar from './components/Navbar/Navbar'
 import Home from './components/Home/Home'
 import Login from './components/Login/Login'
@@ -12,7 +12,7 @@ import ProfileComponent from './components/Profile/ProfileComponent'
 function App() {
 	return (
 		<div>
-			<Header />
+			<HeaderComponent />
 			<div className="main-wrapper">
 				<Navbar />
 				<div className="main-wrapper-content">
