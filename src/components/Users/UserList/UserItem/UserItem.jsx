@@ -1,8 +1,11 @@
 import Avatar from './Avatar/Avatar'
 import UserInfo from './UserInfo/UserInfo'
 import FollowBtn from './FollowBtn/FollowBtn'
+import UnfollowBtn from './UnfollowBtn/UnfollowBtn'
 
-const UserItem = ({ user, onToggleFollowing, userPhoto }) => {
+const UserItem = ({ user, followUser, unFollowUser, userPhoto }) => {
+	const followBtn = <FollowBtn followUser={followUser} userId={user.id} />
+	const unFollowBtn = <UnfollowBtn unFollowUser={unFollowUser} userId={user.id} />
 	return (
 		<div key={user.id}>
 			<Avatar
@@ -10,11 +13,7 @@ const UserItem = ({ user, onToggleFollowing, userPhoto }) => {
 				smallPhoto={user.photos.small}
 				defaultPhoto={userPhoto}
 			/>
-			<FollowBtn
-				onToggleFollowing={onToggleFollowing}
-				userId={user.id}
-				followed={user.followed}
-			/>
+			{user.followed ? unFollowBtn : followBtn}
 			<UserInfo userName={user.name} status={user.status} />
 		</div>
 	)

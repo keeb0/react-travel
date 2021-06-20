@@ -1,15 +1,14 @@
-import axios from 'axios'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import Profile from './Profile'
-import { setUserData } from '../../redux/profile/actions'
 import { withRouter } from 'react-router-dom'
+import Profile from './Profile'
+import { getUserProfile } from '../../redux/profile/actions'
 
 class ProfileComponent extends Component {
 	componentDidMount() {
-		const userId = this.props.match.params.userId || 17548
-		const url = `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
-		axios.get(url).then(response => this.props.setUserData(response.data))
+		const userId = this.props.match.params.userId || 2
+
+		this.props.getUserProfile(userId)
 	}
 
 	render() {
@@ -20,7 +19,7 @@ class ProfileComponent extends Component {
 const mapStateToProps = state => ({
 	user: state.profilePage.user,
 })
-const dispatchFunctions = { setUserData }
+const dispatchFunctions = { getUserProfile }
 
 const WithUrlDataComponent = withRouter(ProfileComponent)
 

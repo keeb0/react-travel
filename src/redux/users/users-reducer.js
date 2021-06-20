@@ -1,10 +1,5 @@
-import {
-	TOGGLE_FOLLOWING,
-	GET_USERS,
-	UPDATE_PAGE,
-	START_LOADING,
-	END_LOADING,
-} from './types'
+import { FOLLOW_USER, UN_FOLLOW_USER } from '../user-following/types'
+import { GET_USERS, UPDATE_PAGE, START_LOADING, END_LOADING } from './types'
 
 const initialState = {
 	items: [],
@@ -23,12 +18,23 @@ const usersReducer = (state = initialState, action) => {
 				totalCount: action.totalCount,
 			}
 
-		case TOGGLE_FOLLOWING:
+		case FOLLOW_USER:
 			return {
 				...state,
 				items: state.items.map(user => {
 					if (user.id === action.userId) {
-						return { ...user, followed: !user.followed }
+						return { ...user, followed: true }
+					}
+					return user
+				}),
+			}
+
+		case UN_FOLLOW_USER:
+			return {
+				...state,
+				items: state.items.map(user => {
+					if (user.id === action.userId) {
+						return { ...user, followed: false }
 					}
 					return user
 				}),

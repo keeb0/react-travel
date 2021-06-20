@@ -1,31 +1,17 @@
-import axios from 'axios'
-import {
-	TOGGLE_FOLLOWING,
-	GET_USERS,
-	UPDATE_PAGE,
-	START_LOADING,
-	END_LOADING,
-} from './types'
+import { userAPI } from '../../api/api'
+import { GET_USERS, UPDATE_PAGE, START_LOADING, END_LOADING } from './types'
 
 export const getUsers = params => {
-	return dispatch => {
-		axios
-			.get('https://social-network.samuraijs.com/api/1.0/users', { params })
-			.then(response => {
-				dispatch({
-					type: GET_USERS,
-					newItems: response.data.items,
-					totalCount: response.data.totalCount,
-				})
-				dispatch(endLoading())
-			})
-	}
-}
+	const action = { type: GET_USERS }
 
-export const toggleFollowing = userId => {
-	return {
-		type: TOGGLE_FOLLOWING,
-		userId,
+	return dispatch => {
+		userAPI.getUsers(params).then(({ items, totalCount }) => {
+			action.newItems = items
+			action.totalCount = totalCount
+
+			dispatch(action)
+			dispatch(endLoading())
+		})
 	}
 }
 

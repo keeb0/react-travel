@@ -1,4 +1,3 @@
-export const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING'
 export const GET_USERS = 'GET_USERS'
 export const UPDATE_PAGE = 'UPDATE_PAGE'
 export const START_LOADING = 'START_LOADING'

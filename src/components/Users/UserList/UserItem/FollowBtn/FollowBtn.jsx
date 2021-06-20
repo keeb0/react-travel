@@ -1,9 +1,7 @@
-const FollowBtn = ({ onToggleFollowing, followed, userId }) => {
+const FollowBtn = ({ followUser, userId }) => {
 	return (
 		<div>
-			<button onClick={onToggleFollowing.bind(null, userId)}>
-				{followed ? 'Unfollow' : 'Follow'}
-			</button>
+			<button onClick={followUser.bind(null, userId)}>Follow</button>
 		</div>
 	)
 }

@@ -41,7 +41,7 @@ const authReducer = (state = initialState, action) => {
 		case SET_MY_PROFILE:
 			return {
 				...state,
-				myProfile: action.profile,
+				myProfile: action.myProfile,
 			}
 
 		default:
