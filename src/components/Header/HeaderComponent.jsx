@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { getMe, authorize, setMyProfile } from '../../redux/auth/actions'
+import { getMe } from '../../redux/auth/actions'
 import Header from './Header'
 
 class HeaderComponent extends Component {
@@ -18,6 +18,6 @@ const mapStateToProps = state => ({
 	myProfile: state.auth.myProfile,
 })
 
-const dispatchFunctions = { getMe, authorize, setMyProfile }
+const dispatchFunctions = { getMe }
 
 export default connect(mapStateToProps, dispatchFunctions)(HeaderComponent)

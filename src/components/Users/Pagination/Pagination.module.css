@@ -3,9 +3,10 @@
 	padding: 0.5em;
 }
 .item {
-	margin: 10px;
+	margin: 0.2em;
 }
 .active {
 	background-color: rgb(163, 144, 182);
 	border-color: rgb(163, 144, 182);
+	color: white;
 }

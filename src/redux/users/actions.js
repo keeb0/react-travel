@@ -1,29 +1,35 @@
 import { userAPI } from '../../api/api'
-import { GET_USERS, UPDATE_PAGE, START_LOADING, END_LOADING } from './types'
+import { SET_USERS, UPDATE_PAGE, TOGGLE_LOADING } from './types'
 
-export const getUsers = params => {
-	const action = { type: GET_USERS }
+const setUsers = (newItems, totalCount) => ({
+	type: SET_USERS,
+	newItems,
+	totalCount,
+})
 
-	return dispatch => {
-		userAPI.getUsers(params).then(({ items, totalCount }) => {
-			action.newItems = items
-			action.totalCount = totalCount
-
-			dispatch(action)
-			dispatch(endLoading())
-		})
-	}
-}
-
-export const updatePage = newPage => ({
+const updatePage = newPage => ({
 	type: UPDATE_PAGE,
 	newPage,
 })
 
-export const startLoading = () => ({
-	type: START_LOADING,
+const toggleLoading = value => ({
+	type: TOGGLE_LOADING,
+	value,
 })
 
-export const endLoading = () => ({
-	type: END_LOADING,
-})
+export const getUsersFromAPI = (page, count) => {
+	return d => {
+		userAPI.getUsers({ page, count }).then(({ items, totalCount }) => {
+			d(setUsers(items, totalCount))
+			d(toggleLoading(false))
+		})
+	}
+}
+
+export const getUsers = (newPage, pageSize) => {
+	return d => {
+		d(toggleLoading(true))
+		d(updatePage(newPage))
+		d(getUsersFromAPI(newPage, pageSize))
+	}
+}

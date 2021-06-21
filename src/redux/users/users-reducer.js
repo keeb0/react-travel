@@ -1,5 +1,5 @@
 import { FOLLOW_USER, UN_FOLLOW_USER } from '../user-following/types'
-import { GET_USERS, UPDATE_PAGE, START_LOADING, END_LOADING } from './types'
+import { SET_USERS, UPDATE_PAGE, TOGGLE_LOADING } from './types'
 
 const initialState = {
 	items: [],
@@ -11,7 +11,7 @@ const initialState = {
 
 const usersReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case GET_USERS:
+		case SET_USERS:
 			return {
 				...state,
 				items: action.newItems,
@@ -46,16 +46,10 @@ const usersReducer = (state = initialState, action) => {
 				currentPage: action.newPage,
 			}
 
-		case START_LOADING:
+		case TOGGLE_LOADING:
 			return {
 				...state,
-				isLoading: true,
-			}
-
-		case END_LOADING:
-			return {
-				...state,
-				isLoading: false,
+				isLoading: action.value,
 			}
 
 		default:

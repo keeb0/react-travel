@@ -8,6 +8,7 @@ import defaultProfilePhoto from '../../assets/users/img/person-icon.png'
 const Header = ({ user }) => {
 	const login = { title: 'Войти', link: '/login' }
 	const logout = { title: 'Выйти', link: '/logout' }
+
 	return (
 		<div className={s.header_container}>
 			<header className={`${s.header} container`}>

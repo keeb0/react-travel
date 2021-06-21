@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getUsers, startLoading, updatePage } from '../../redux/users/actions'
+import { getUsers } from '../../redux/users/actions'
 import { followUser, unFollowUser } from '../../redux/user-following/actions'
 import userPhoto from '../../assets/users/img/person-icon.png'
 import { Component } from 'react'
@@ -9,11 +9,7 @@ import UsersList from './UserList/UsersList'
 
 class UsersContainer extends Component {
 	componentDidMount() {
-		this.props.startLoading()
-		this.props.getUsers({
-			page: this.props.currentPage,
-			count: this.props.pageSize,
-		})
+		this.props.getUsers(this.props.currentPage, this.props.pageSize)
 	}
 
 	render() {
@@ -23,7 +19,7 @@ class UsersContainer extends Component {
 					totalItems={this.props.totalCount}
 					pageSize={this.props.pageSize}
 					currentPage={this.props.currentPage}
-					updatePage={this.props.updatePage}
+					changeUserPage={this.props.getUsers}
 					startLoading={this.props.startLoading}
 					getUsers={this.props.getUsers}
 				/>
@@ -50,11 +46,10 @@ const mapStateToProps = state => ({
 })
 
 const dispatchObj = {
-	startLoading,
 	getUsers,
 	followUser,
 	unFollowUser,
-	updatePage,
+	getUsers,
 }
 
 export default connect(mapStateToProps, dispatchObj)(UsersContainer)
